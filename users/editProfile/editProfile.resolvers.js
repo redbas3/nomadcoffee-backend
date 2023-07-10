@@ -16,7 +16,6 @@ const resolverFn = async (
   },
   { loggedInUser }
 ) => {
-  console.log(avatarUrl);
   let avatarNewUrl = null;
   if (avatarUrl) {
     const { filename, createReadStream } = await avatarUrl;
@@ -59,6 +58,7 @@ const resolverFn = async (
 };
 
 export default {
+  Upload: require("graphql-upload-minimal").GraphQLUpload,
   Mutation: {
     editProfile: protectedResolver(resolverFn),
   },

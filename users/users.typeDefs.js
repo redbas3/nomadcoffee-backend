@@ -1,4 +1,4 @@
-import { gql } from "apollo-server";
+import { gql } from "graphql-tag";
 
 export default gql`
   type User {
@@ -8,7 +8,7 @@ export default gql`
     name: String!
     location: String
     password: String!
-    avatarUrl: Upload
+    avatarUrl: String
     githubUsername: String
     createdAt: String!
     updatedAt: String!
