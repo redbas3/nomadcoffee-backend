@@ -26,7 +26,7 @@ startServer();
 
 const app = express();
 app.use(graphqlUploadExpress());
-app.use(logger("tiny"));
+// app.use(logger("tiny"));
 app.use("/static", express.static("uploads"));
 
 app.listen({ port: PORT }, () => {

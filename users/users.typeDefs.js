@@ -12,5 +12,9 @@ export default gql`
     githubUsername: String
     createdAt: String!
     updatedAt: String!
+    totalFollowing: Int!
+    totalFollowers: Int!
+    isMe: Boolean!
+    isFollowing: Boolean!
   }
 `;
