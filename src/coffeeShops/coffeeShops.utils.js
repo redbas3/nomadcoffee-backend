@@ -11,6 +11,15 @@ export const processCategories = (categories) => {
   }));
 };
 
+export const processCategoriesId = (categories) => {
+  const categoriesQuery = [];
+  categories.map((category) => {
+    categoriesQuery.push({ id: category.id });
+    return null;
+  });
+  return categoriesQuery;
+};
+
 export const processPhotos = (categories) => {
   categories = categories.split(",");
   return categories.map((category) => ({

@@ -52,6 +52,7 @@ const resolverFn = async (
   if (coffeeShop) {
     return {
       ok: true,
+      id: coffeeShop.id,
     };
   }
 };

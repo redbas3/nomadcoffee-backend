@@ -2,8 +2,6 @@ import client from "../../client";
 import { protectedResolver } from "../../users/users.utils";
 
 const resolverFn = async (_, { id }, { loggedInUser }) => {
-  console.log(id);
-  console.log(loggedInUser.id);
   try {
     const oldCoffeeShop = await client.coffeeShop.findFirst({
       where: {

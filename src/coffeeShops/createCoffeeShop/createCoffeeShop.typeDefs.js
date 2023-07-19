@@ -4,6 +4,7 @@ export default gql`
   scalar Upload
   type createCoffeeShopResult {
     ok: Boolean!
+    id: Int
     error: String
   }
   type Mutation {

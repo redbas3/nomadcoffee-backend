@@ -1,7 +1,7 @@
 import fs from "fs";
 import client from "../../client";
 import { protectedResolver } from "../../users/users.utils";
-import { processCategories } from "../coffeeShops.utils";
+import { processCategories, processCategoriesId } from "../coffeeShops.utils";
 
 const resolverFn = async (
   _,
@@ -21,7 +21,10 @@ const resolverFn = async (
   }
 
   const oldCoffeeShop = await client.coffeeShop.findFirst({
-    where: { id },
+    where: { id, userId: loggedInUser.id },
+    include: {
+      categories: true,
+    },
   });
   if (!oldCoffeeShop) {
     return {
@@ -34,16 +37,20 @@ const resolverFn = async (
     where: {
       id,
     },
+    select: {
+      categories: true,
+      id: true,
+    },
     data: {
       name,
       latitude,
       longitude,
-      ...(categories && {
-        categories: {
-          disconnect: oldCoffeeShop.categories,
+      categories: {
+        disconnect: processCategoriesId(oldCoffeeShop.categories),
+        ...(categories && {
           connectOrCreate: processCategories(categories),
-        },
-      }),
+        }),
+      },
     },
   });
 
