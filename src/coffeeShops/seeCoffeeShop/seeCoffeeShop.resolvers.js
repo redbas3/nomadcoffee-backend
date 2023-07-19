@@ -7,6 +7,11 @@ export default {
         where: {
           id,
         },
+        include: {
+          categories: true,
+          photos: true,
+          user: true,
+        },
       }),
   },
 };

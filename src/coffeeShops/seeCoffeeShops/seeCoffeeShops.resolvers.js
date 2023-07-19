@@ -6,6 +6,11 @@ export default {
       const coffeeShops = await client.coffeeShop.findMany({
         take: 5,
         skip: (page - 1) * 5,
+        include: {
+          categories: true,
+          photos: true,
+          user: true,
+        },
       });
 
       const totalCoffeesShop = await client.coffeeShop.count();
