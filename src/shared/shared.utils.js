@@ -2,8 +2,8 @@ import AWS from "aws-sdk";
 
 AWS.config.update({
   credentials: {
-    accessKeyId: process.env.AWS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
+    accessKeyId: process.env.NOMADCOFFEE_AWS_KEY,
+    secretAccessKey: process.env.NOMADCOFFEE_AWS_SECRET_KEY,
   },
 });
 

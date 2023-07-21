@@ -27,7 +27,10 @@ export default {
           };
         }
 
-        const token = await jwt.sign({ id: user.id }, process.env.SECRET_KEY);
+        const token = await jwt.sign(
+          { id: user.id },
+          process.env.NOMADCOFFEE_SECRET_KEY
+        );
 
         return {
           ok: passwordOk,
