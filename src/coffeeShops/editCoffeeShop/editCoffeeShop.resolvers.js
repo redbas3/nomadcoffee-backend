@@ -1,7 +1,7 @@
-import fs from "fs";
 import client from "../../client";
 import { protectedResolver } from "../../users/users.utils";
 import { processCategories, processCategoriesId } from "../coffeeShops.utils";
+import { uploadToS3 } from "../../shared/shared.utils";
 
 const resolverFn = async (
   _,
@@ -10,14 +10,7 @@ const resolverFn = async (
 ) => {
   let photoUrl = null;
   if (photo) {
-    const { filename, createReadStream } = await photo;
-    const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
-    const readStream = createReadStream();
-    const writeStream = fs.createWriteStream(
-      process.cwd() + "/uploads/" + newFilename
-    );
-    readStream.pipe(writeStream);
-    photoUrl = `http://localhost:4000/static/${newFilename}`;
+    photoUrl = await uploadToS3(photo, loggedInUser.id, "photos");
   }
 
   const oldCoffeeShop = await client.coffeeShop.findFirst({
