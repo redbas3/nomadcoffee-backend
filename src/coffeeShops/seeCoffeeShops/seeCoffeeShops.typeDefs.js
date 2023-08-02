@@ -9,5 +9,6 @@ export default gql`
   }
   type Query {
     seeCoffeeShops(page: Int!): seeCoffeeShops
+    seeCoffeeShopsFeed(offset: Int!): [CoffeeShop]
   }
 `;

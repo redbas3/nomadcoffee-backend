@@ -23,5 +23,21 @@ export default {
         totalPages: Math.ceil(totalCoffeesShop / PAGE_COUNT),
       };
     },
+    seeCoffeeShopsFeed: async (_, { offset }) => {
+      const result = await client.coffeeShop.findMany({
+        take: 5,
+        skip: offset,
+        include: {
+          categories: true,
+          photos: true,
+          user: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+
+      return result;
+    },
   },
 };
